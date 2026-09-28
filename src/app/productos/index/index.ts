@@ -32,7 +32,6 @@ export class Index implements OnInit {
       .catch(error => {
         console.error('Error al obtener productos:', error);
         
-        // Si el backend responde 401/Unauthenticated, borramos token y enviamos a /login
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         this.router.navigate(['/login']);

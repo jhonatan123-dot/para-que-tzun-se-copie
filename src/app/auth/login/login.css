@@ -1,6 +1,12 @@
-.example-container mat-form-field + mat-form-field {
-  margin-left: 8px;
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh; /* Ajusta la altura para centrarlo verticalmente */
+  width: 100%;
 }
+
+/* Conservas todo tu CSS actual a partir de aquí */
 .example-container mat-form-field + mat-form-field {
   margin-left: 8px;
 }

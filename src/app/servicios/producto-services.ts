@@ -9,7 +9,7 @@ export class ProductoServices {
     private apiUrl: string = 'http://10.5.243.245:8000/api/';
 
   getProductos(): Promise<any> {
-    // 1. Recuperamos el token guardado en el navegador tras el login
+
     const token = localStorage.getItem('token');
 
     return fetch(this.apiUrl + 'producto', {
@@ -17,7 +17,7 @@ export class ProductoServices {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': `Bearer ${token}` // <--- Enviamos el token a Laravel
+        'Authorization': `Bearer ${token}`
       }
     }).then(async response => {
       const data = await response.json();

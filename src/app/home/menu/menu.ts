@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../servicios/login-service';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, MatButtonModule, MatToolbarModule ],
   templateUrl: './menu.html',
   styleUrl: './menu.css'
 })

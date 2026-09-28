@@ -1,8 +1,11 @@
-<p> Menu </p>
-    <ul>
-        <li>Home</li>
-        <li><a href="/producto">Producto</a></li>
-        <li><a href="/acerca_de">Acerca de..</a></li>
-        <li><a href="#" (click)="logout($event)">Salir</a></li>
-    </ul>
+<mat-toolbar>
+  <span>My App</span>
 
+  <span class="example-spacer"></span>
+
+  <a mat-button href="/home">Home</a>
+  <a mat-button href="/producto">Products</a>
+
+  <span class="example-space"></span>
+  <a mat-button (click)="logout($event)">Salir</a>
+</mat-toolbar>
