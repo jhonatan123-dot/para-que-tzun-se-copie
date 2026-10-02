@@ -6,14 +6,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'; // <--- Importante para los íconos
 import { ProductoServices } from '../../servicios/producto-services';
 import { Producto } from '../../model/producto';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-index',
   standalone: true,
   imports: [
-    CommonModule, 
-    MatTableModule, 
-    MatButtonModule, 
+    CommonModule,
+    MatTableModule,
+    MatButtonModule,
     MatIconModule // <--- Agregar aquí
   ],
   providers: [ProductoServices],
@@ -22,7 +23,7 @@ import { Producto } from '../../model/producto';
 })
 export class Index implements OnInit {
   dataSource = new MatTableDataSource<Producto>([]);
-  
+
   // Los nombres deben coincidir EXACTAMENTE con los 'matColumnDef' del HTML
   displayedColumns = ['id', 'nombre', 'Precio', 'Stock', 'Acciones'];
 
@@ -50,12 +51,29 @@ export class Index implements OnInit {
   }
 
   eliminar(id: any) {
-    this.productoServices.deleteProducto(id)
-      .then(result => {
-        this.loaddata();
-      })
-      .catch(error => {
-        console.error('Error al eliminar:', error);
-      });
-  }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminarlo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productoServices.deleteProducto(id)
+          .then(result => {
+            this.loaddata();
+            Swal.fire(
+              'Eliminado!',
+              'El producto ha sido eliminado.',
+              'success'
+            );
+          })
+          .catch(error => {
+            console.error('Error al eliminar:', error);
+          });
+      }
+    });
+  };
 }
